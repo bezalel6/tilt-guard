@@ -1,4 +1,4 @@
 <h1>Tilt Guard</h1>
-this extension will send you to the tilted haven (https://www.tilted-haven.netlify.app) when you start tilting.
+this extension will send you to the <a href="https://www.tilted-haven.netlify.app">tilted haven</a> when you start tilting.
 
 
