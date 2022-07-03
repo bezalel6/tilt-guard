@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- <link rel="stylesheet" href="button.css"> -->
+  <style>
+    body {
+      width: 95vw;
+      height: min-content;
+    }
+
+    input {
+      width: 100%;
+      font-size: medium;
+    }
+
+    * {
+      display: inline-block;
+    }
+
+    button {
+      font-size: large;
+      width: 100%;
+    }
+
+    style {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <button id="changeColor"></button> -->
+  <div id="container">
+    <h1>Lichess User</h1>
+    <input type="text" width="100vw" value="bezalel6" class="slider" id="user">
+    <br>
+    <h1>Tilt Cooldown: <p id="cooldown-out"></p> minutes</h1>
+    <input type="range" width="100vw" min="1" max="50" class="slider" id="cooldown">
+    <br>
+    <h1>Tilt Starts after: <p id="losses-out"></p> losses</h1>
+    <input type="range" min="1" max="20" class="slider" id="start_at_losses">
+    <br>
+    <button id="save">Save Settings</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
