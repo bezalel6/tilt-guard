@@ -96,6 +96,7 @@ const start = async () => {
 // listen for messages from background.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   sendResponse({});
+  console.log("got msg");
   if (request.logme) {
     console.log(
       "%ccontent-script.js line:80 request",
@@ -103,8 +104,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       request
     );
   }
-  console.log("got msg");
-  start();
+  if (request.manualTrigger) {
+    const exp = Date.now() + Number(request.manualTrigger) * 60 * 1000;
+    localStorage.setItem("expire", exp);
+    location.replace(TILT_URL + "?lost=" + lost + "&cooldown=" + cooldown);
+  } else {
+    start();
+  }
 });
 // listen for messages from popup.js
 start();

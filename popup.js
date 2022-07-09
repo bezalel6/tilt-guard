@@ -14,7 +14,6 @@ function bindValue(range, out) {
   };
 }
 
-const key = "tilt-mins";
 const loadData = async () => {
   const getStorageData = (key) =>
     new Promise((resolve, reject) =>
@@ -71,5 +70,14 @@ saveBtn.onclick = () => {
     saveBtn.onclick = () => window.close();
   });
 };
+
+// manualTrigger.onclick = () => {
+//   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, {
+//       manualTilt: manualTriggerMinutes.value,
+//     });
+//   });
+// };
+
 console.log("off the top of my head");
 loadData();
