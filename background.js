@@ -1,26 +1,30 @@
 // log completed web requests to lichess.org
 chrome.webRequest.onCompleted.addListener(
   (details) => {
-    console.log(
-      "%ccontent-script.js line:80 details",
-      "color: #007acc;",
-      details
-    );
     if (details.url.endsWith("sides")) {
-      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          { type: "tilt" },
-          function (response) {
-            console.log(
-              "%ccontent-script.js line:86 response",
-              "color: #007acc;",
-              response
-            );
-          }
-        );
-      });
+      setTimeout(() => {
+        send();
+      }, 1000);
     }
   },
-  { urls: ["https://lichess.org/*"] }
+  { urls: ["https://lichess.org/*/sides*"] }
 );
+function send() {
+  getCurrentTab().then((tab) => {
+    console.log("sending to tab ", tab);
+    chrome.tabs.sendMessage(tab.id, { type: "tilt" }, function (response) {
+      console.log(
+        "%ccontent-script.js line:86 response",
+        "color: #007acc;",
+        response
+      );
+    });
+  });
+}
+async function getCurrentTab() {
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let [tab] = await chrome.tabs.query(queryOptions);
+  return tab;
+}
+console.log("background");

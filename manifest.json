@@ -2,11 +2,12 @@
   "name": "Tilt Guard",
   "description": "Protect Your ELO From Tilt!",
   "version": "1.0",
-  "manifest_version": 2,
-  "permissions": ["<all_urls>", "webRequest", "webRequestBlocking", "storage"],
+  "manifest_version": 3,
+  "host_permissions": ["https://lichess.org/*"],
+  "permissions": ["webRequest", "storage", "tabs"],
 
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -16,11 +17,10 @@
     }
   ],
 
-  "options_page": "options.html",
   "icons": {
     "128": "./tilt.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "./tilt.png",
     "default_popup": "popup.html"
   }

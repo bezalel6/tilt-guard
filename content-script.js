@@ -93,10 +93,11 @@ const start = async () => {
     });
   });
 };
-// listen for messages from background.js
+
+// listen for messages from background.js manifest ver 3
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  sendResponse({});
-  console.log("got msg");
+  console.log("got msg from background");
+  sendResponse({ hello: "world" });
   if (request.logme) {
     console.log(
       "%ccontent-script.js line:80 request",
@@ -111,6 +112,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else {
     start();
   }
+  return true;
 });
 // listen for messages from popup.js
 start();
